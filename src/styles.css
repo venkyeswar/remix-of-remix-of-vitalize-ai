@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&display=swap");
 @import url("https://fonts.cdnfonts.com/css/clash-display");
 
 /*
@@ -63,7 +63,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --font-display: "Clash Display", "DM Sans", system-ui, sans-serif;
-  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-sans: "Inter", "DM Sans", system-ui, sans-serif;
+  --font-condensed: "Barlow Condensed", "Clash Display", system-ui, sans-serif;
 }
 
 :root {
@@ -104,39 +105,39 @@
 }
 
 .dark {
-  /* Dark theme — deep charcoal #0D0F12 / #13161B with lime accent */
-  --background: oklch(0.16 0.008 250);
-  --foreground: oklch(0.96 0.005 250);
-  --card: oklch(0.2 0.01 250);
-  --card-foreground: oklch(0.96 0.005 250);
-  --popover: oklch(0.2 0.01 250);
-  --popover-foreground: oklch(0.96 0.005 250);
-  --primary: oklch(0.92 0.21 130);
-  --primary-foreground: oklch(0.16 0.05 140);
-  --secondary: oklch(0.24 0.012 250);
-  --secondary-foreground: oklch(0.96 0.005 250);
-  --muted: oklch(0.24 0.012 250);
-  --muted-foreground: oklch(0.68 0.015 250);
-  --accent: oklch(0.92 0.21 130);
-  --accent-foreground: oklch(0.16 0.05 140);
+  /* Iron & Ink — zinc-950 base, zinc-900 cards, hairline borders, forest-green accent */
+  --background: oklch(0.16 0.004 270);            /* ~zinc-950 */
+  --foreground: oklch(0.97 0.003 270);
+  --card: oklch(0.21 0.005 270);                  /* ~zinc-900 */
+  --card-foreground: oklch(0.97 0.003 270);
+  --popover: oklch(0.21 0.005 270);
+  --popover-foreground: oklch(0.97 0.003 270);
+  --primary: oklch(0.7 0.17 145);                 /* athletic forest-green */
+  --primary-foreground: oklch(0.14 0.02 270);
+  --secondary: oklch(0.26 0.005 270);
+  --secondary-foreground: oklch(0.97 0.003 270);
+  --muted: oklch(0.26 0.005 270);
+  --muted-foreground: oklch(0.62 0.008 270);      /* ~zinc-500 */
+  --accent: oklch(0.7 0.17 145);
+  --accent-foreground: oklch(0.14 0.02 270);
   --destructive: oklch(0.65 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.92 0.21 130);
-  --chart-1: oklch(0.92 0.21 130);
-  --chart-2: oklch(0.7 0.14 230);
-  --chart-3: oklch(0.78 0.16 60);
-  --chart-4: oklch(0.6 0.18 290);
-  --chart-5: oklch(0.72 0.2 20);
-  --sidebar: oklch(0.18 0.01 250);
-  --sidebar-foreground: oklch(0.96 0.005 250);
-  --sidebar-primary: oklch(0.92 0.21 130);
-  --sidebar-primary-foreground: oklch(0.16 0.05 140);
-  --sidebar-accent: oklch(0.24 0.012 250);
-  --sidebar-accent-foreground: oklch(0.96 0.005 250);
-  --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.92 0.21 130);
+  --border: oklch(1 0 0 / 6%);                    /* hairline */
+  --input: oklch(1 0 0 / 8%);
+  --ring: oklch(0.7 0.17 145);
+  --chart-1: oklch(0.7 0.17 145);
+  --chart-2: oklch(0.62 0.005 270);
+  --chart-3: oklch(0.5 0.005 270);
+  --chart-4: oklch(0.78 0.16 60);
+  --chart-5: oklch(0.68 0.14 230);
+  --sidebar: oklch(0.18 0.004 270);
+  --sidebar-foreground: oklch(0.97 0.003 270);
+  --sidebar-primary: oklch(0.7 0.17 145);
+  --sidebar-primary-foreground: oklch(0.14 0.02 270);
+  --sidebar-accent: oklch(0.26 0.005 270);
+  --sidebar-accent-foreground: oklch(0.97 0.003 270);
+  --sidebar-border: oklch(1 0 0 / 6%);
+  --sidebar-ring: oklch(0.7 0.17 145);
 }
 
 @layer base {
@@ -161,6 +162,22 @@
 
 @layer utilities {
   .font-display { font-family: var(--font-display); }
+  .font-condensed { font-family: var(--font-condensed); font-weight: 700; letter-spacing: -0.01em; }
+
+  /* Subtle gym/iron motif overlay — scattered barbell + plate silhouettes */
+  .iron-motif {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='%23ffffff'><rect x='10' y='95' width='180' height='10' rx='2'/><rect x='0' y='80' width='14' height='40' rx='3'/><rect x='186' y='80' width='14' height='40' rx='3'/><rect x='18' y='70' width='10' height='60' rx='3'/><rect x='172' y='70' width='10' height='60' rx='3'/></g></svg>"),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='none' stroke='%23ffffff' stroke-width='6'><circle cx='100' cy='100' r='60'/><circle cx='100' cy='100' r='18'/></g></svg>");
+    background-repeat: no-repeat, no-repeat;
+    background-position: -60px 12%, calc(100% + 40px) 78%;
+    background-size: 520px auto, 360px auto;
+  }
+  .dark .iron-motif { opacity: 0.05; }
 
   .glass {
     background: color-mix(in oklch, var(--card) 70%, transparent);
