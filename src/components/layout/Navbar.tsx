@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import { BookConsultation } from "@/components/BookConsultation";
 import { useUserStore, useOnboardingStore } from "@/lib/store";
 
-const DASH_NAV = [
+type DashNavItem = { to: string; label: string; icon: typeof Home; exact?: boolean };
+const DASH_NAV: DashNavItem[] = [
   { to: "/dashboard", label: "Overview", icon: Home, exact: true },
   { to: "/dashboard/diet-plans", label: "Diet plans", icon: Salad },
   { to: "/dashboard/progress", label: "Progress", icon: LineChart },
   { to: "/dashboard/profile", label: "Profile", icon: User },
-] as const;
+];
 
 export function Navbar() {
   const { isLoggedIn, user, logout } = useUserStore();
