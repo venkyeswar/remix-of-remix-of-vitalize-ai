@@ -8,6 +8,7 @@ import {
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+import { BookConsultation } from "@/components/BookConsultation";
 import { MacroRing } from "@/components/MacroRing";
 import { features, howItWorks, socialProof, testimonials, staticDietPlans } from "@/lib/static-data";
 
@@ -96,6 +97,7 @@ function Hero() {
             <Button asChild size="lg" variant="ghost" className="hero-cta rounded-full px-7 text-base">
               <a href="#how">See how it works</a>
             </Button>
+            <span className="hero-cta"><BookConsultation variant="outline" size="lg" label="Talk to a dietitian" /></span>
           </div>
           <div className="hero-cta mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> No credit card</span>
@@ -331,9 +333,12 @@ function FinalCTA() {
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
           Two minutes of questions. A plan that respects your body, your kitchen and your calendar.
         </p>
-        <Button asChild size="lg" className="mt-8 rounded-full px-8 text-base font-medium">
-          <Link to="/onboarding">Build my free plan <ArrowRight className="ml-1 h-4 w-4" /></Link>
-        </Button>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="lg" className="rounded-full px-8 text-base font-medium">
+            <Link to="/onboarding">Build my free plan <ArrowRight className="ml-1 h-4 w-4" /></Link>
+          </Button>
+          <BookConsultation variant="outline" size="lg" label="Or talk to a dietitian first" />
+        </div>
       </div>
     </section>
   );

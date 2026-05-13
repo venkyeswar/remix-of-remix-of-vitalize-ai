@@ -68,40 +68,40 @@
 }
 
 :root {
-  /* Light — warm cream canvas, brushed copper primary */
+  /* Light — warm bone canvas, deep copper primary, near-black ink for readability */
   --radius: 0.875rem;
-  --background: oklch(0.985 0.006 75);
-  --foreground: oklch(0.18 0.012 60);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.012 60);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.012 60);
-  --primary: oklch(0.6 0.13 55);
-  --primary-foreground: oklch(0.99 0.005 75);
-  --secondary: oklch(0.95 0.012 70);
-  --secondary-foreground: oklch(0.22 0.012 60);
-  --muted: oklch(0.94 0.01 70);
-  --muted-foreground: oklch(0.48 0.015 60);
-  --accent: oklch(0.6 0.13 55);
-  --accent-foreground: oklch(0.99 0.005 75);
+  --background: oklch(0.975 0.008 75);
+  --foreground: oklch(0.16 0.012 60);
+  --card: oklch(0.99 0.004 75);
+  --card-foreground: oklch(0.16 0.012 60);
+  --popover: oklch(0.99 0.004 75);
+  --popover-foreground: oklch(0.16 0.012 60);
+  --primary: oklch(0.5 0.15 50);
+  --primary-foreground: oklch(0.985 0.006 75);
+  --secondary: oklch(0.93 0.014 70);
+  --secondary-foreground: oklch(0.18 0.012 60);
+  --muted: oklch(0.92 0.012 70);
+  --muted-foreground: oklch(0.4 0.018 60);
+  --accent: oklch(0.5 0.15 50);
+  --accent-foreground: oklch(0.985 0.006 75);
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.88 0.01 70);
-  --input: oklch(0.93 0.01 70);
-  --ring: oklch(0.6 0.13 55);
-  --chart-1: oklch(0.6 0.13 55);
-  --chart-2: oklch(0.7 0.1 45);
-  --chart-3: oklch(0.45 0.05 60);
-  --chart-4: oklch(0.78 0.12 70);
-  --chart-5: oklch(0.55 0.08 40);
-  --sidebar: oklch(0.97 0.008 75);
-  --sidebar-foreground: oklch(0.2 0.012 60);
-  --sidebar-primary: oklch(0.6 0.13 55);
-  --sidebar-primary-foreground: oklch(0.99 0.005 75);
-  --sidebar-accent: oklch(0.93 0.012 70);
-  --sidebar-accent-foreground: oklch(0.2 0.012 60);
-  --sidebar-border: oklch(0.88 0.01 70);
-  --sidebar-ring: oklch(0.6 0.13 55);
+  --border: oklch(0.82 0.014 65);
+  --input: oklch(0.9 0.012 70);
+  --ring: oklch(0.5 0.15 50);
+  --chart-1: oklch(0.5 0.15 50);
+  --chart-2: oklch(0.62 0.12 45);
+  --chart-3: oklch(0.4 0.06 60);
+  --chart-4: oklch(0.72 0.12 70);
+  --chart-5: oklch(0.5 0.08 40);
+  --sidebar: oklch(0.96 0.01 75);
+  --sidebar-foreground: oklch(0.18 0.012 60);
+  --sidebar-primary: oklch(0.5 0.15 50);
+  --sidebar-primary-foreground: oklch(0.985 0.006 75);
+  --sidebar-accent: oklch(0.91 0.014 70);
+  --sidebar-accent-foreground: oklch(0.18 0.012 60);
+  --sidebar-border: oklch(0.82 0.014 65);
+  --sidebar-ring: oklch(0.5 0.15 50);
 }
 
 .dark {
@@ -164,20 +164,38 @@
   .font-display { font-family: var(--font-display); }
   .font-condensed { font-family: var(--font-condensed); font-weight: 700; letter-spacing: -0.01em; }
 
-  /* Subtle gym/iron motif overlay — scattered barbell + plate silhouettes */
+  /* Subtle gym/iron motif overlay — barbell + plate silhouettes */
   .iron-motif {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.04;
+    opacity: 0.07;
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='%23ffffff'><rect x='10' y='95' width='180' height='10' rx='2'/><rect x='0' y='80' width='14' height='40' rx='3'/><rect x='186' y='80' width='14' height='40' rx='3'/><rect x='18' y='70' width='10' height='60' rx='3'/><rect x='172' y='70' width='10' height='60' rx='3'/></g></svg>"),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='none' stroke='%23ffffff' stroke-width='6'><circle cx='100' cy='100' r='60'/><circle cx='100' cy='100' r='18'/></g></svg>");
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='currentColor'><rect x='10' y='95' width='180' height='10' rx='2'/><rect x='0' y='80' width='14' height='40' rx='3'/><rect x='186' y='80' width='14' height='40' rx='3'/><rect x='18' y='70' width='10' height='60' rx='3'/><rect x='172' y='70' width='10' height='60' rx='3'/></g></svg>"),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='none' stroke='currentColor' stroke-width='6'><circle cx='100' cy='100' r='60'/><circle cx='100' cy='100' r='18'/></g></svg>");
     background-repeat: no-repeat, no-repeat;
     background-position: -60px 12%, calc(100% + 40px) 78%;
     background-size: 520px auto, 360px auto;
+    color: var(--foreground);
   }
-  .dark .iron-motif { opacity: 0.05; }
+  .dark .iron-motif { opacity: 0.05; color: #fff; }
+
+  /* Food motif — fork, leaf, plate silhouettes for nutrition pages */
+  .food-motif {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='none' stroke='currentColor' stroke-width='5'><circle cx='100' cy='100' r='70'/><circle cx='100' cy='100' r='52'/></g></svg>"),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='currentColor'><path d='M40 20 q40 20 40 80 q0 40 -20 80 l-12 0 q-20 -40 -20 -80 q0 -60 12 -80 z'/><path d='M150 30 q30 30 20 70 q-10 40 -40 40 l-6 0 q-10 -40 0 -70 q10 -30 26 -40 z'/></g></svg>");
+    background-repeat: no-repeat, no-repeat;
+    background-position: calc(100% + 50px) 20%, -40px 80%;
+    background-size: 380px auto, 300px auto;
+    color: var(--foreground);
+  }
+  .dark .food-motif { opacity: 0.05; color: #fff; }
+
 
   .glass {
     background: color-mix(in oklch, var(--card) 70%, transparent);

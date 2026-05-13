@@ -1,11 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { useMemo } from "react";
+import { ArrowRight, Sparkles, LayoutDashboard } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { toast } from "sonner";
+import { BookConsultation } from "@/components/BookConsultation";
 import { useOnboardingStore, useDietStore } from "@/lib/store";
 import { calculate } from "@/lib/calculations";
 import { staticDietPlans, type DietPlan } from "@/lib/static-data";
@@ -61,6 +60,14 @@ function Results() {
                 Engineered for steady progress and lean-mass retention from your age, body, activity and goal — using
                 Mifflin–St Jeor. Treat the numbers as targets and adjust as you learn.
               </p>
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <Button asChild size="lg" className="rounded-full px-7 font-semibold uppercase tracking-wider">
+                  <Link to="/dashboard">
+                    <LayoutDashboard className="mr-1.5 h-4 w-4" /> Open dashboard
+                  </Link>
+                </Button>
+                <BookConsultation variant="outline" size="lg" label="Book a dietitian" />
+              </div>
             </div>
 
             {/* Condensed Stats Bar — replaces the four confusing tiles */}
@@ -172,7 +179,7 @@ function Results() {
                 A registered dietitian reviews your plan and arranges weekly meal delivery in your city.
               </p>
             </div>
-            <ConsultDialog />
+            <BookConsultation size="lg" label="Request consultation" />
           </div>
         </div>
       </section>
@@ -249,27 +256,3 @@ function Macro({ tag }: { tag: string }) {
   );
 }
 
-function ConsultDialog() {
-  const [open, setOpen] = useState(false);
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button size="lg" className="rounded-full px-7 font-semibold uppercase tracking-wider">
-          Request consultation
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader><DialogTitle className="font-condensed text-2xl uppercase">Talk to a dietitian</DialogTitle></DialogHeader>
-        <form
-          onSubmit={(e) => { e.preventDefault(); setOpen(false); toast.success("Our team will contact you within 24 hours 🎉"); }}
-          className="space-y-3"
-        >
-          <input required placeholder="Full name" className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm outline-none focus:border-primary" />
-          <input required type="email" placeholder="Email" className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm outline-none focus:border-primary" />
-          <input required placeholder="Phone" className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm outline-none focus:border-primary" />
-          <Button type="submit" className="h-12 w-full rounded-xl">Request callback</Button>
-        </form>
-      </DialogContent>
-    </Dialog>
-  );
-}
