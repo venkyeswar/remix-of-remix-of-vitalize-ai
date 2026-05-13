@@ -42,7 +42,7 @@ export function Navbar() {
               return (
                 <Link
                   key={n.to}
-                  to={n.to}
+                  to={n.to as string}
                   className={`flex items-center gap-2 rounded-full px-3.5 py-2 transition-colors ${
                     active ? "bg-primary/15 text-primary" : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
@@ -108,7 +108,7 @@ export function Navbar() {
             return (
               <Link
                 key={n.to}
-                to={n.to}
+                to={n.to as string}
                 className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium ${
                   active ? "bg-primary/15 text-primary" : "text-muted-foreground"
                 }`}
