@@ -1,14 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { LineChart as RLineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
-import { Flame, Droplet, Trophy, Scale, Check, Plus, Minus, Dumbbell, CalendarDays } from "lucide-react";
+import { Flame, Droplet, Trophy, Scale, Check, Plus, Minus, Dumbbell, CalendarDays, Flame as FlameIcon } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { MacroRing } from "@/components/MacroRing";
+import { StreakCalendar } from "@/components/StreakCalendar";
 import { useUserStore, useOnboardingStore, useDietStore } from "@/lib/store";
 import { calculate } from "@/lib/calculations";
 import { getWeeklyPlan, todayName, DAY_NAMES } from "@/lib/static-data";
 import { Button } from "@/components/ui/button";
 import { BookConsultation } from "@/components/BookConsultation";
+import { celebrate } from "@/lib/celebrate";
 
 export const Route = createFileRoute("/dashboard/")({
   head: () => ({ meta: [{ title: "Dashboard — NorthForm" }] }),
@@ -48,6 +50,22 @@ function DashHome() {
   const eaten = dayPlan.meals.reduce((s, m) => s + (log.meals[m.key] ? m.calories : 0), 0);
   const completionPct = Math.round((Object.values(log.meals).filter(Boolean).length / dayPlan.meals.length) * 100) || 0;
   const waterPct = Math.min(100, Math.round((log.waterMl / WATER_GOAL) * 100));
+
+  // Celebrate completions (only fire when crossing the threshold)
+  const prevMealPctRef = useRef(completionPct);
+  const prevWaterPctRef = useRef(waterPct);
+  useEffect(() => {
+    if (selectedDay === todayName()) {
+      if (prevMealPctRef.current < 100 && completionPct >= 100) {
+        celebrate("All meals checked off! 🎉", "Consistency is the real macro. Keep the streak alive.");
+      }
+      if (prevWaterPctRef.current < 100 && waterPct >= 100) {
+        celebrate("Hydration goal smashed! 💧", `${WATER_GOAL} ml down — every cell thanks you.`);
+      }
+    }
+    prevMealPctRef.current = completionPct;
+    prevWaterPctRef.current = waterPct;
+  }, [completionPct, waterPct, selectedDay]);
 
   // streak: count of recent consecutive days with >=50% meal completion
   const streak = useMemo(() => {
