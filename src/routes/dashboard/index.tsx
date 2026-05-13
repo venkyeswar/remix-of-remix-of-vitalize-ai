@@ -228,6 +228,21 @@ function DashHome() {
           </ResponsiveContainer>
         </div>
       </div>
+
+      {/* Book Consultation banner */}
+      <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-7 md:p-9">
+        <div className="iron-motif" />
+        <div className="relative flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+          <div className="max-w-xl">
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">1:1 coaching</p>
+            <h3 className="mt-2 font-display text-2xl font-semibold">Want a registered dietitian on your side?</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Free 15-min discovery call. We tailor your plan and can arrange weekly meal delivery.
+            </p>
+          </div>
+          <BookConsultation size="lg" />
+        </div>
+      </div>
     </div>
   );
 }
