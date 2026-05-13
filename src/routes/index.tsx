@@ -97,6 +97,7 @@ function Hero() {
             <Button asChild size="lg" variant="ghost" className="hero-cta rounded-full px-7 text-base">
               <a href="#how">See how it works</a>
             </Button>
+            <span className="hero-cta"><BookConsultation variant="outline" size="lg" label="Talk to a dietitian" /></span>
           </div>
           <div className="hero-cta mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> No credit card</span>
