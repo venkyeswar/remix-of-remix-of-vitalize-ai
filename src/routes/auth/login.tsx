@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { AuthShell, FloatingInput } from "@/components/AuthShell";
 import { Button } from "@/components/ui/button";
-import { useUserStore } from "@/lib/store";
+import { useUserStore, useOnboardingStore } from "@/lib/store";
 
 export const Route = createFileRoute("/auth/login")({
   head: () => ({ meta: [{ title: "Log in — NorthForm" }, { name: "description", content: "Welcome back to NorthForm." }] }),
