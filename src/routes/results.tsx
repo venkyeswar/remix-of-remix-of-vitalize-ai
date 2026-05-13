@@ -171,7 +171,7 @@ function Results() {
                 A registered dietitian reviews your plan and arranges weekly meal delivery in your city.
               </p>
             </div>
-            <ConsultDialog />
+            <BookConsultation size="lg" label="Request consultation" />
           </div>
         </div>
       </section>
