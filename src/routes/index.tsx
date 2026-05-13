@@ -333,9 +333,12 @@ function FinalCTA() {
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
           Two minutes of questions. A plan that respects your body, your kitchen and your calendar.
         </p>
-        <Button asChild size="lg" className="mt-8 rounded-full px-8 text-base font-medium">
-          <Link to="/onboarding">Build my free plan <ArrowRight className="ml-1 h-4 w-4" /></Link>
-        </Button>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="lg" className="rounded-full px-8 text-base font-medium">
+            <Link to="/onboarding">Build my free plan <ArrowRight className="ml-1 h-4 w-4" /></Link>
+          </Button>
+          <BookConsultation variant="outline" size="lg" label="Or talk to a dietitian first" />
+        </div>
       </div>
     </section>
   );
