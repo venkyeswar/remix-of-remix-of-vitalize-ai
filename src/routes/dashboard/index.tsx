@@ -8,6 +8,7 @@ import { useUserStore, useOnboardingStore, useDietStore } from "@/lib/store";
 import { calculate } from "@/lib/calculations";
 import { getWeeklyPlan, todayName, DAY_NAMES } from "@/lib/static-data";
 import { Button } from "@/components/ui/button";
+import { BookConsultation } from "@/components/BookConsultation";
 
 export const Route = createFileRoute("/dashboard/")({
   head: () => ({ meta: [{ title: "Dashboard — NorthForm" }] }),
