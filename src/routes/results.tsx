@@ -60,6 +60,14 @@ function Results() {
                 Engineered for steady progress and lean-mass retention from your age, body, activity and goal — using
                 Mifflin–St Jeor. Treat the numbers as targets and adjust as you learn.
               </p>
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <Button asChild size="lg" className="rounded-full px-7 font-semibold uppercase tracking-wider">
+                  <Link to="/dashboard">
+                    <LayoutDashboard className="mr-1.5 h-4 w-4" /> Open dashboard
+                  </Link>
+                </Button>
+                <BookConsultation variant="outline" size="lg" label="Book a dietitian" />
+              </div>
             </div>
 
             {/* Condensed Stats Bar — replaces the four confusing tiles */}
