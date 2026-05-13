@@ -166,6 +166,18 @@ function ProgressPage() {
         </div>
       </div>
 
+      {/* Streak heatmap */}
+      <div className="mt-6 glass rounded-3xl p-6 md:p-7">
+        <header className="mb-5 flex items-center justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">Consistency calendar</p>
+            <h2 className="mt-1 font-display text-xl">Last 12 weeks of meal compliance</h2>
+          </div>
+          <span className="rounded-full bg-primary/15 px-3 py-1 text-xs font-medium text-primary">{avgCompliance}% weekly avg</span>
+        </header>
+        <StreakCalendar days={84} />
+      </div>
+
       {/* Macro targets */}
       <div className="mt-6 glass rounded-3xl p-6 md:p-7">
         <p className="text-xs uppercase tracking-widest text-muted-foreground">Daily targets</p>
