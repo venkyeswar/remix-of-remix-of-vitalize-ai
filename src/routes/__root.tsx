@@ -77,9 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "NorthForm — calibrated nutrition for real bodies" },
       { name: "description", content: "NorthForm builds personalized diet and fitness plans calibrated to your body, goal and budget. Built on Mifflin-St Jeor science." },
       { property: "og:title", content: "NorthForm — calibrated nutrition for real bodies" },
-      { property: "og:description", content: "Personalized diet and fitness plans calibrated to your body, goal and budget." },
+      { property: "og:description", content: "NorthForm builds personalized diet and fitness plans calibrated to your body, goal and budget. Built on Mifflin-St Jeor science." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "NorthForm — calibrated nutrition for real bodies" },
+      { name: "twitter:description", content: "NorthForm builds personalized diet and fitness plans calibrated to your body, goal and budget. Built on Mifflin-St Jeor science." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/60f46a9f-069f-4e2d-8e9e-4e33fb2ea856" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/60f46a9f-069f-4e2d-8e9e-4e33fb2ea856" },
     ],
     links: [
       {
