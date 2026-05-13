@@ -17,6 +17,12 @@ export const Route = createFileRoute("/results")({
       { name: "description", content: "Your daily fuel protocol — calorie target, macro split, and exactly what to eat today." },
     ],
   }),
+  beforeLoad: async () => {
+    const { redirect } = await import("@tanstack/react-router");
+    const { useUserStore, useOnboardingStore } = await import("@/lib/store");
+    if (!useUserStore.getState().isLoggedIn) throw redirect({ to: "/auth/login" });
+    if (!useOnboardingStore.getState().isComplete) throw redirect({ to: "/onboarding" });
+  },
   component: Results,
 });
 
@@ -35,7 +41,7 @@ function Results() {
   ];
 
   return (
-    <div className="dark min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       {/* Hero + Stats */}

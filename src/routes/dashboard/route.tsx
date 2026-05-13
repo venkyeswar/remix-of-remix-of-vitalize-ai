@@ -4,6 +4,12 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { useUserStore } from "@/lib/store";
 
 export const Route = createFileRoute("/dashboard")({
+  beforeLoad: async () => {
+    const { redirect } = await import("@tanstack/react-router");
+    const { useUserStore, useOnboardingStore } = await import("@/lib/store");
+    if (!useUserStore.getState().isLoggedIn) throw redirect({ to: "/auth/login" });
+    if (!useOnboardingStore.getState().isComplete) throw redirect({ to: "/onboarding" });
+  },
   component: DashboardLayout,
 });
 

@@ -20,6 +20,13 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Calibrated nutrition for real bodies. Get a plan tuned to your body and goal in under 2 minutes." },
     ],
   }),
+  beforeLoad: async () => {
+    const { redirect } = await import("@tanstack/react-router");
+    const { useUserStore, useOnboardingStore } = await import("@/lib/store");
+    if (useUserStore.getState().isLoggedIn && useOnboardingStore.getState().isComplete) {
+      throw redirect({ to: "/dashboard" });
+    }
+  },
   component: Landing,
 });
 

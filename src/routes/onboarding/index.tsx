@@ -15,6 +15,12 @@ import { motivationalQuotes } from "@/lib/static-data";
 
 export const Route = createFileRoute("/onboarding/")({
   head: () => ({ meta: [{ title: "Build your plan — NorthForm" }, { name: "description", content: "Seven short questions. One personalized plan." }] }),
+  beforeLoad: async () => {
+    const { redirect } = await import("@tanstack/react-router");
+    const { useUserStore, useOnboardingStore } = await import("@/lib/store");
+    if (!useUserStore.getState().isLoggedIn) throw redirect({ to: "/auth/login" });
+    if (useOnboardingStore.getState().isComplete) throw redirect({ to: "/dashboard" });
+  },
   component: Onboarding,
 });
 

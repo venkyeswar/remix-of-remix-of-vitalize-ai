@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { AuthShell, FloatingInput } from "@/components/AuthShell";
 import { Button } from "@/components/ui/button";
-import { useUserStore } from "@/lib/store";
+import { useUserStore, useOnboardingStore } from "@/lib/store";
 
 export const Route = createFileRoute("/auth/login")({
   head: () => ({ meta: [{ title: "Log in — NorthForm" }, { name: "description", content: "Welcome back to NorthForm." }] }),
@@ -15,6 +15,9 @@ function Login() {
   const [err, setErr] = useState<{ email?: string; pwd?: string }>({});
   const navigate = useNavigate();
   const login = useUserStore((s) => s.login);
+  const isComplete = useOnboardingStore((s) => s.isComplete);
+
+  const goNext = () => navigate({ to: isComplete ? "/dashboard" : "/onboarding" });
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +27,7 @@ function Login() {
     setErr(next);
     if (Object.keys(next).length) return;
     login(email);
-    navigate({ to: "/dashboard" });
+    goNext();
   };
 
   return (
@@ -40,7 +43,7 @@ function Login() {
         <div className="relative my-2 flex items-center gap-3 text-xs text-muted-foreground">
           <span className="h-px flex-1 bg-border" />OR<span className="h-px flex-1 bg-border" />
         </div>
-        <button type="button" onClick={() => { login("alex@northform.app"); navigate({ to: "/dashboard" }); }}
+        <button type="button" onClick={() => { login("alex@northform.app"); goNext(); }}
           className="flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-border bg-background text-sm font-medium hover:border-primary">
           <GoogleG /> Continue with Google
         </button>
