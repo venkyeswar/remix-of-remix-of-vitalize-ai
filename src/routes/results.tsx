@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -26,14 +26,6 @@ function Results() {
   const { selectedPlanId, selectPlan } = useDietStore();
   const plan = staticDietPlans.find((p) => p.id === selectedPlanId) ?? staticDietPlans[0];
 
-  // Force the Iron & Ink dark aesthetic on this page regardless of global theme.
-  useEffect(() => {
-    const html = document.documentElement;
-    const had = html.classList.contains("dark");
-    html.classList.add("dark");
-    return () => { if (!had) html.classList.remove("dark"); };
-  }, []);
-
   const today = new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
   const firstName = data.fullName?.split(" ")[0];
   const macroSplit = [
@@ -43,7 +35,7 @@ function Results() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="dark min-h-screen bg-background text-foreground">
       <Navbar />
 
       {/* Hero + Stats */}
