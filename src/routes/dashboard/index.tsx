@@ -248,6 +248,43 @@ function DashHome() {
         </div>
       </div>
 
+      {/* Streak calendar */}
+      <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+        <div className="glass rounded-3xl p-6 md:p-7">
+          <div className="mb-4 flex items-center justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">Consistency calendar</p>
+              <h2 className="mt-1 font-display text-2xl">Last 5 weeks</h2>
+            </div>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1 text-xs font-medium text-primary">
+              <FlameIcon className="h-3.5 w-3.5" /> {streak}-day streak
+            </span>
+          </div>
+          <StreakCalendar days={35} />
+        </div>
+        <div className="glass rounded-3xl p-6 md:p-7">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground">Today's progress</p>
+          <h2 className="mt-1 font-display text-2xl">{completionPct}% on plan</h2>
+          <div className="mt-5 space-y-4">
+            <div>
+              <div className="mb-1.5 flex items-center justify-between text-xs"><span className="text-muted-foreground">Meals</span><span className="font-medium">{completionPct}%</span></div>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-primary transition-all duration-500" style={{ width: `${completionPct}%` }} /></div>
+            </div>
+            <div>
+              <div className="mb-1.5 flex items-center justify-between text-xs"><span className="text-muted-foreground">Water</span><span className="font-medium">{waterPct}%</span></div>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-[var(--chart-2)] transition-all duration-500" style={{ width: `${waterPct}%` }} /></div>
+            </div>
+            <div>
+              <div className="mb-1.5 flex items-center justify-between text-xs"><span className="text-muted-foreground">Workout</span><span className="font-medium">{log.workoutDone ? "Done" : "Pending"}</span></div>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-[var(--chart-3)] transition-all duration-500" style={{ width: log.workoutDone ? "100%" : "0%" }} /></div>
+            </div>
+          </div>
+          <Button asChild variant="outline" size="sm" className="mt-6 w-full rounded-full">
+            <Link to="/dashboard/progress">See full progress →</Link>
+          </Button>
+        </div>
+      </div>
+
       {/* Book Consultation banner */}
       <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-7 md:p-9">
         <div className="iron-motif" />
