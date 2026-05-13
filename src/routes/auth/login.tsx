@@ -15,6 +15,9 @@ function Login() {
   const [err, setErr] = useState<{ email?: string; pwd?: string }>({});
   const navigate = useNavigate();
   const login = useUserStore((s) => s.login);
+  const isComplete = useOnboardingStore((s) => s.isComplete);
+
+  const goNext = () => navigate({ to: isComplete ? "/dashboard" : "/onboarding" });
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +27,7 @@ function Login() {
     setErr(next);
     if (Object.keys(next).length) return;
     login(email);
-    navigate({ to: "/dashboard" });
+    goNext();
   };
 
   return (
