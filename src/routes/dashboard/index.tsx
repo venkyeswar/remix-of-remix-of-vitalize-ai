@@ -63,8 +63,9 @@ function DashHome() {
   }, [logs, week]);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 md:px-6 md:py-10">
-      <header className="mb-8">
+    <div className="relative mx-auto max-w-6xl px-4 py-8 md:px-6 md:py-10">
+      <div className="food-motif" />
+      <header className="relative mb-8">
         <p className="text-xs uppercase tracking-widest text-muted-foreground">
           {new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" })}
         </p>
