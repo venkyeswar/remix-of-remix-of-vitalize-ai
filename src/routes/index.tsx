@@ -219,8 +219,6 @@ function Features() {
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  // bento sizes
-  const sizes = ["md:col-span-2", "", "", "", "md:col-span-2", ""];
   return (
     <section id="features" className="bg-card/30 py-28">
       <div ref={ref} className="mx-auto max-w-7xl px-6">
@@ -230,11 +228,11 @@ function Features() {
             Built like a tool, not a brochure.
           </h2>
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
-          {features.map((f, i) => {
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+          {features.map((f) => {
             const Icon = ICONS[f.icon] ?? Sparkles;
             return (
-              <div key={f.title} className={`feat lift glass rounded-3xl p-7 ${sizes[i] ?? ""}`}>
+              <div key={f.title} className="feat lift glass rounded-3xl p-7 flex flex-col h-full">
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/15 text-primary">
                   <Icon className="h-5 w-5" />
                 </span>

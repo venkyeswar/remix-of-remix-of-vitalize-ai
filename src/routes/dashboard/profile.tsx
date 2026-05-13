@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { User, Mail, Cake, Ruler, Scale, Activity, Salad, Wallet, Target, Dumbbell, Edit3, Save, AlertTriangle, Heart, Ban } from "lucide-react";
+import { useRef, useState } from "react";
+import { User, Mail, Cake, Ruler, Scale, Activity, Salad, Wallet, Target, Dumbbell, Edit3, Save, AlertTriangle, Heart, Ban, Camera, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useUserStore, useOnboardingStore } from "@/lib/store";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/dashboard/profile")({
   head: () => ({ meta: [{ title: "Profile — NorthForm" }] }),
@@ -14,9 +15,20 @@ function ProfilePage() {
   const { data, patch } = useOnboardingStore();
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({ name: user.name, email: user.email });
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const initials = user.name.split(" ").map((p) => p[0]).join("").slice(0, 2).toUpperCase();
   const memberSince = "May 2026";
+
+  const onPickPhoto = (file: File) => {
+    if (file.size > 2 * 1024 * 1024) { toast.error("Image must be under 2 MB"); return; }
+    const reader = new FileReader();
+    reader.onload = () => {
+      updateUser({ avatar: reader.result as string });
+      toast.success("Profile photo updated");
+    };
+    reader.readAsDataURL(file);
+  };
 
   const save = () => {
     updateUser({ name: form.name, email: form.email });
@@ -46,9 +58,40 @@ function ProfilePage() {
       {/* Identity */}
       <section className="glass rounded-3xl p-6 md:p-8">
         <div className="flex flex-wrap items-center gap-6">
-          <span className="grid h-20 w-20 place-items-center rounded-3xl bg-primary text-2xl font-semibold text-primary-foreground shadow-lg">
-            {initials}
-          </span>
+          <div className="group relative">
+            <span className="grid h-24 w-24 place-items-center overflow-hidden rounded-3xl bg-primary text-2xl font-semibold text-primary-foreground shadow-lg ring-2 ring-primary/30">
+              {user.avatar ? (
+                <img src={user.avatar} alt={user.name} className="h-full w-full object-cover" />
+              ) : (
+                initials
+              )}
+            </span>
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              className="absolute -bottom-1 -right-1 grid h-9 w-9 place-items-center rounded-full border-2 border-background bg-primary text-primary-foreground shadow-md transition-transform hover:scale-110"
+              title="Change photo"
+            >
+              <Camera className="h-4 w-4" />
+            </button>
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => { const f = e.target.files?.[0]; if (f) onPickPhoto(f); e.target.value = ""; }}
+            />
+            {user.avatar && (
+              <button
+                type="button"
+                onClick={() => { updateUser({ avatar: null }); toast.success("Photo removed"); }}
+                className="absolute -top-1 -right-1 grid h-7 w-7 place-items-center rounded-full border-2 border-background bg-destructive text-destructive-foreground shadow-md"
+                title="Remove photo"
+              >
+                <Trash2 className="h-3 w-3" />
+              </button>
+            )}
+          </div>
           <div className="flex-1">
             {editing ? (
               <div className="grid gap-3 sm:grid-cols-2">

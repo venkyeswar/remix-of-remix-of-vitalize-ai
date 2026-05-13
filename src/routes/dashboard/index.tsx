@@ -1,14 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { LineChart as RLineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
-import { Flame, Droplet, Trophy, Scale, Check, Plus, Minus, Dumbbell, CalendarDays } from "lucide-react";
+import { Flame, Droplet, Trophy, Scale, Check, Plus, Minus, Dumbbell, CalendarDays, Flame as FlameIcon } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { MacroRing } from "@/components/MacroRing";
+import { StreakCalendar } from "@/components/StreakCalendar";
 import { useUserStore, useOnboardingStore, useDietStore } from "@/lib/store";
 import { calculate } from "@/lib/calculations";
 import { getWeeklyPlan, todayName, DAY_NAMES } from "@/lib/static-data";
 import { Button } from "@/components/ui/button";
 import { BookConsultation } from "@/components/BookConsultation";
+import { celebrate } from "@/lib/celebrate";
 
 export const Route = createFileRoute("/dashboard/")({
   head: () => ({ meta: [{ title: "Dashboard — NorthForm" }] }),
@@ -48,6 +50,22 @@ function DashHome() {
   const eaten = dayPlan.meals.reduce((s, m) => s + (log.meals[m.key] ? m.calories : 0), 0);
   const completionPct = Math.round((Object.values(log.meals).filter(Boolean).length / dayPlan.meals.length) * 100) || 0;
   const waterPct = Math.min(100, Math.round((log.waterMl / WATER_GOAL) * 100));
+
+  // Celebrate completions (only fire when crossing the threshold)
+  const prevMealPctRef = useRef(completionPct);
+  const prevWaterPctRef = useRef(waterPct);
+  useEffect(() => {
+    if (selectedDay === todayName()) {
+      if (prevMealPctRef.current < 100 && completionPct >= 100) {
+        celebrate("All meals checked off! 🎉", "Consistency is the real macro. Keep the streak alive.");
+      }
+      if (prevWaterPctRef.current < 100 && waterPct >= 100) {
+        celebrate("Hydration goal smashed! 💧", `${WATER_GOAL} ml down — every cell thanks you.`);
+      }
+    }
+    prevMealPctRef.current = completionPct;
+    prevWaterPctRef.current = waterPct;
+  }, [completionPct, waterPct, selectedDay]);
 
   // streak: count of recent consecutive days with >=50% meal completion
   const streak = useMemo(() => {
@@ -227,6 +245,43 @@ function DashHome() {
               <Line type="monotone" dataKey="kg" stroke="var(--primary)" strokeWidth={2.5} dot={{ r: 3, fill: "var(--primary)" }} />
             </RLineChart>
           </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Streak calendar */}
+      <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+        <div className="glass rounded-3xl p-6 md:p-7">
+          <div className="mb-4 flex items-center justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">Consistency calendar</p>
+              <h2 className="mt-1 font-display text-2xl">Last 5 weeks</h2>
+            </div>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1 text-xs font-medium text-primary">
+              <FlameIcon className="h-3.5 w-3.5" /> {streak}-day streak
+            </span>
+          </div>
+          <StreakCalendar days={35} />
+        </div>
+        <div className="glass rounded-3xl p-6 md:p-7">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground">Today's progress</p>
+          <h2 className="mt-1 font-display text-2xl">{completionPct}% on plan</h2>
+          <div className="mt-5 space-y-4">
+            <div>
+              <div className="mb-1.5 flex items-center justify-between text-xs"><span className="text-muted-foreground">Meals</span><span className="font-medium">{completionPct}%</span></div>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-primary transition-all duration-500" style={{ width: `${completionPct}%` }} /></div>
+            </div>
+            <div>
+              <div className="mb-1.5 flex items-center justify-between text-xs"><span className="text-muted-foreground">Water</span><span className="font-medium">{waterPct}%</span></div>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-[var(--chart-2)] transition-all duration-500" style={{ width: `${waterPct}%` }} /></div>
+            </div>
+            <div>
+              <div className="mb-1.5 flex items-center justify-between text-xs"><span className="text-muted-foreground">Workout</span><span className="font-medium">{log.workoutDone ? "Done" : "Pending"}</span></div>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-[var(--chart-3)] transition-all duration-500" style={{ width: log.workoutDone ? "100%" : "0%" }} /></div>
+            </div>
+          </div>
+          <Button asChild variant="outline" size="sm" className="mt-6 w-full rounded-full">
+            <Link to="/dashboard/progress">See full progress →</Link>
+          </Button>
         </div>
       </div>
 
