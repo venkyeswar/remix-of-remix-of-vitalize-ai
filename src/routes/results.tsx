@@ -248,27 +248,3 @@ function Macro({ tag }: { tag: string }) {
   );
 }
 
-function ConsultDialog() {
-  const [open, setOpen] = useState(false);
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button size="lg" className="rounded-full px-7 font-semibold uppercase tracking-wider">
-          Request consultation
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader><DialogTitle className="font-condensed text-2xl uppercase">Talk to a dietitian</DialogTitle></DialogHeader>
-        <form
-          onSubmit={(e) => { e.preventDefault(); setOpen(false); toast.success("Our team will contact you within 24 hours 🎉"); }}
-          className="space-y-3"
-        >
-          <input required placeholder="Full name" className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm outline-none focus:border-primary" />
-          <input required type="email" placeholder="Email" className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm outline-none focus:border-primary" />
-          <input required placeholder="Phone" className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm outline-none focus:border-primary" />
-          <Button type="submit" className="h-12 w-full rounded-xl">Request callback</Button>
-        </form>
-      </DialogContent>
-    </Dialog>
-  );
-}
