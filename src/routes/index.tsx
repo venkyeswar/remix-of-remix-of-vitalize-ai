@@ -8,6 +8,7 @@ import {
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+import { BookConsultation } from "@/components/BookConsultation";
 import { MacroRing } from "@/components/MacroRing";
 import { features, howItWorks, socialProof, testimonials, staticDietPlans } from "@/lib/static-data";
 
