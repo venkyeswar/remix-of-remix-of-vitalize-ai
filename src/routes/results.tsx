@@ -186,7 +186,7 @@ function StatPill({
   label, value, unit, hint, accent,
 }: { label: string; value: number | string; unit: string; hint?: string; accent?: boolean }) {
   return (
-    <div className="min-w-0">
+    <div className={`min-w-0 p-5 ${accent ? "bg-primary/5" : "bg-card/60"}`}>
       <p className={`text-[10px] font-bold uppercase tracking-[0.22em] ${accent ? "text-primary" : "text-muted-foreground"}`}>{label}</p>
       <p className={`mt-1 font-condensed text-2xl leading-none md:text-3xl ${accent ? "text-primary" : ""}`}>
         {typeof value === "number" ? value.toLocaleString() : value}{" "}
@@ -195,10 +195,6 @@ function StatPill({
       {hint ? <p className="mt-1 truncate text-[10px] uppercase tracking-wider text-muted-foreground">{hint}</p> : null}
     </div>
   );
-}
-
-function Divider() {
-  return <div className="hidden h-12 w-px self-center bg-border md:block" />;
 }
 
 function MealTimeline({ plan }: { plan: DietPlan }) {
