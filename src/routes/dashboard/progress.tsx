@@ -7,7 +7,7 @@ import { useOnboardingStore, useDietStore } from "@/lib/store";
 import { calculate } from "@/lib/calculations";
 import { getWeeklyPlan, DAY_NAMES } from "@/lib/static-data";
 import { StatCard } from "@/components/StatCard";
-import { StreakCalendar } from "@/components/StreakCalendar";
+import { StreakMonthCalendar } from "@/components/StreakMonthCalendar";
 
 export const Route = createFileRoute("/dashboard/progress")({
   head: () => ({ meta: [{ title: "Progress — NorthForm" }] }),
