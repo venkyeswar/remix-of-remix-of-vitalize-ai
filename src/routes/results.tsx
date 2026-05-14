@@ -156,12 +156,6 @@ function Results() {
               </div>
             </div>
 
-            {/* Mini reference: BMR — kept but de-emphasised */}
-            <div className="mt-5 rounded-2xl border border-border bg-card/40 p-5">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Resting burn (BMR)</p>
-              <p className="mt-1 font-condensed text-2xl">{calc.bmr.toLocaleString()} <span className="text-sm text-muted-foreground">kcal</span></p>
-              <p className="mt-1 text-[11px] text-muted-foreground">Calories your body uses at rest — informational only.</p>
-            </div>
           </aside>
         </div>
 
