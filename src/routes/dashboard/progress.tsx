@@ -7,7 +7,7 @@ import { useOnboardingStore, useDietStore } from "@/lib/store";
 import { calculate } from "@/lib/calculations";
 import { getWeeklyPlan, DAY_NAMES } from "@/lib/static-data";
 import { StatCard } from "@/components/StatCard";
-import { StreakCalendar } from "@/components/StreakCalendar";
+import { StreakMonthCalendar } from "@/components/StreakMonthCalendar";
 
 export const Route = createFileRoute("/dashboard/progress")({
   head: () => ({ meta: [{ title: "Progress — NorthForm" }] }),
@@ -166,16 +166,16 @@ function ProgressPage() {
         </div>
       </div>
 
-      {/* Streak heatmap */}
-      <div className="mt-6 glass rounded-3xl p-6 md:p-7">
-        <header className="mb-5 flex items-center justify-between">
+      {/* Streak calendar */}
+      <div className="mt-6 glass rounded-3xl p-4 sm:p-6 md:p-7">
+        <header className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-xs uppercase tracking-widest text-muted-foreground">Consistency calendar</p>
-            <h2 className="mt-1 font-display text-xl">Last 12 weeks of meal compliance</h2>
+            <h2 className="mt-1 font-display text-xl">Mark your streak, day by day</h2>
           </div>
           <span className="rounded-full bg-primary/15 px-3 py-1 text-xs font-medium text-primary">{avgCompliance}% weekly avg</span>
         </header>
-        <StreakCalendar days={84} />
+        <StreakMonthCalendar />
       </div>
 
       {/* Macro targets */}

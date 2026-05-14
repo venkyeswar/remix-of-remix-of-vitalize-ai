@@ -252,3 +252,30 @@
     background-size: 48px 48px;
   }
 }
+
+@layer utilities {
+  .streak-light .rdp-day_button,
+  [data-slot="day"].streak-light button {
+    background: color-mix(in oklch, var(--primary) 18%, var(--background));
+    border-color: color-mix(in oklch, var(--primary) 30%, transparent);
+    color: var(--foreground);
+  }
+  .streak-partial .rdp-day_button,
+  [data-slot="day"].streak-partial button {
+    background: color-mix(in oklch, var(--primary) 45%, var(--background));
+    border-color: color-mix(in oklch, var(--primary) 55%, transparent);
+    color: var(--primary-foreground);
+  }
+  .streak-full .rdp-day_button,
+  [data-slot="day"].streak-full button {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: 0 0 0 2px color-mix(in oklch, var(--primary) 25%, transparent);
+  }
+  .streak-today .rdp-day_button,
+  [data-slot="day"].streak-today button {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}

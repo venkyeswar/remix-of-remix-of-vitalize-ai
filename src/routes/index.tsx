@@ -73,7 +73,7 @@ function Hero() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 mesh-bg opacity-60" />
       <div className="absolute inset-0 grid-bg opacity-40" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pt-20 pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:pt-28">
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pt-12 pb-16 md:pt-20 md:pb-24 lg:pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:pt-28">
         <div>
           <div className="hero-cta inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur">
             <Sparkles className="h-3 w-3 text-primary" />
@@ -188,14 +188,14 @@ function HowItWorks() {
     return () => obs.disconnect();
   }, []);
   return (
-    <section id="how" ref={ref} className="mx-auto max-w-7xl px-6 py-28">
+    <section id="how" ref={ref} className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:py-28">
       <div className="mb-14 max-w-2xl">
         <p className="text-xs uppercase tracking-widest text-primary">How it works</p>
         <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">From confused to calibrated in two minutes.</h2>
       </div>
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2 md:grid-cols-3">
         {howItWorks.map((s) => (
-          <div key={s.n} className="hiw-card lift glass rounded-3xl p-7">
+          <div key={s.n} className="hiw-card lift glass flex h-full flex-col rounded-3xl p-7">
             <span className="font-display text-5xl text-primary">{s.n}</span>
             <h3 className="mt-6 text-xl font-semibold">{s.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
@@ -220,7 +220,7 @@ function Features() {
     return () => obs.disconnect();
   }, []);
   return (
-    <section id="features" className="bg-card/30 py-28">
+    <section id="features" className="bg-card/30 py-16 md:py-24 lg:py-28">
       <div ref={ref} className="mx-auto max-w-7xl px-6">
         <div className="mb-14 max-w-2xl">
           <p className="text-xs uppercase tracking-widest text-primary">Features</p>
@@ -250,7 +250,7 @@ function Features() {
 function SamplePlan() {
   const plan = staticDietPlans[0];
   return (
-    <section id="sample" className="mx-auto max-w-7xl px-6 py-28">
+    <section id="sample" className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:py-28">
       <div className="mb-14 max-w-2xl">
         <p className="text-xs uppercase tracking-widest text-primary">A peek inside</p>
         <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
@@ -293,17 +293,17 @@ function SamplePlan() {
 
 function Testimonials() {
   return (
-    <section className="bg-card/30 py-28">
+    <section className="bg-card/30 py-16 md:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-14 max-w-2xl">
           <p className="text-xs uppercase tracking-widest text-primary">From the community</p>
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">People who stopped guessing.</h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2 md:grid-cols-3">
           {testimonials.map((t) => (
-            <figure key={t.name} className="lift glass rounded-3xl p-7">
+            <figure key={t.name} className="lift glass flex h-full flex-col rounded-3xl p-7">
               <blockquote className="text-base leading-relaxed">"{t.quote}"</blockquote>
-              <figcaption className="mt-6 flex items-center gap-3">
+              <figcaption className="mt-auto flex items-center gap-3 pt-6">
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/20 font-semibold text-primary">
                   {t.name.split(" ").map((p) => p[0]).join("")}
                 </span>
