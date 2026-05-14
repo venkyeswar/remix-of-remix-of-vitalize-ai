@@ -193,9 +193,9 @@ function HowItWorks() {
         <p className="text-xs uppercase tracking-widest text-primary">How it works</p>
         <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">From confused to calibrated in two minutes.</h2>
       </div>
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2 md:grid-cols-3">
         {howItWorks.map((s) => (
-          <div key={s.n} className="hiw-card lift glass rounded-3xl p-7">
+          <div key={s.n} className="hiw-card lift glass flex h-full flex-col rounded-3xl p-7">
             <span className="font-display text-5xl text-primary">{s.n}</span>
             <h3 className="mt-6 text-xl font-semibold">{s.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
