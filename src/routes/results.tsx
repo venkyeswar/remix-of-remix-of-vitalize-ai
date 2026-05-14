@@ -70,12 +70,11 @@ function Results() {
               </div>
             </div>
 
-            {/* Condensed Stats Bar — replaces the four confusing tiles */}
-            <div className="grid grid-cols-3 gap-8 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur md:gap-10">
-              <StatPill label="Maintenance" value={calc.tdee} unit="kcal" hint="TDEE — body burn" />
-              <Divider />
+            {/* Stats grid — full breakdown */}
+            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4">
+              <StatPill label="BMR" value={calc.bmr} unit="kcal" hint="Resting burn" />
+              <StatPill label="TDEE" value={calc.tdee} unit="kcal" hint="Maintenance" />
               <StatPill label="Daily target" value={calc.calories} unit="kcal" hint={data.goal ?? "Goal pace"} accent />
-              <Divider />
               <StatPill label="Timeline" value={calc.weeks} unit="weeks" hint={`To ${data.targetWeightKg ?? "—"} kg`} />
             </div>
           </div>
@@ -157,12 +156,6 @@ function Results() {
               </div>
             </div>
 
-            {/* Mini reference: BMR — kept but de-emphasised */}
-            <div className="mt-5 rounded-2xl border border-border bg-card/40 p-5">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Resting burn (BMR)</p>
-              <p className="mt-1 font-condensed text-2xl">{calc.bmr.toLocaleString()} <span className="text-sm text-muted-foreground">kcal</span></p>
-              <p className="mt-1 text-[11px] text-muted-foreground">Calories your body uses at rest — informational only.</p>
-            </div>
           </aside>
         </div>
 
@@ -193,7 +186,7 @@ function StatPill({
   label, value, unit, hint, accent,
 }: { label: string; value: number | string; unit: string; hint?: string; accent?: boolean }) {
   return (
-    <div className="min-w-0">
+    <div className={`min-w-0 p-5 ${accent ? "bg-primary/5" : "bg-card/60"}`}>
       <p className={`text-[10px] font-bold uppercase tracking-[0.22em] ${accent ? "text-primary" : "text-muted-foreground"}`}>{label}</p>
       <p className={`mt-1 font-condensed text-2xl leading-none md:text-3xl ${accent ? "text-primary" : ""}`}>
         {typeof value === "number" ? value.toLocaleString() : value}{" "}
@@ -202,10 +195,6 @@ function StatPill({
       {hint ? <p className="mt-1 truncate text-[10px] uppercase tracking-wider text-muted-foreground">{hint}</p> : null}
     </div>
   );
-}
-
-function Divider() {
-  return <div className="hidden h-12 w-px self-center bg-border md:block" />;
 }
 
 function MealTimeline({ plan }: { plan: DietPlan }) {

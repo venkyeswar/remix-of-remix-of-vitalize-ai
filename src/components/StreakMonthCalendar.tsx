@@ -41,24 +41,24 @@ export function StreakMonthCalendar() {
   const monthLabel = month.toLocaleDateString(undefined, { month: "long", year: "numeric" });
 
   return (
-    <div>
-      <header className="mb-4 flex items-center justify-between">
+    <div className="mx-auto w-full max-w-[560px]">
+      <header className="mb-5 flex items-center justify-center gap-5">
         <button
           onClick={() => { const d = new Date(month); d.setMonth(d.getMonth() - 1); setMonth(d); }}
-          className="grid h-9 w-9 place-items-center rounded-full border border-border/60 hover:bg-accent"
+          className="grid h-10 w-10 place-items-center rounded-full border border-border/60 hover:bg-accent hover:border-primary/50 transition-colors"
           aria-label="Previous month"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
-        <div className="text-center">
-          <p className="font-display text-lg">{monthLabel}</p>
-          <p className="mt-0.5 inline-flex items-center gap-1 text-xs text-primary">
+        <div className="text-center min-w-[180px]">
+          <p className="font-display text-xl">{monthLabel}</p>
+          <p className="mt-1 inline-flex items-center gap-1 text-xs text-primary">
             <Flame className="h-3 w-3" /> {streak}-day streak
           </p>
         </div>
         <button
           onClick={() => { const d = new Date(month); d.setMonth(d.getMonth() + 1); setMonth(d); }}
-          className="grid h-9 w-9 place-items-center rounded-full border border-border/60 hover:bg-accent"
+          className="grid h-10 w-10 place-items-center rounded-full border border-border/60 hover:bg-accent hover:border-primary/50 transition-colors"
           aria-label="Next month"
         >
           <ChevronRight className="h-4 w-4" />
@@ -83,19 +83,19 @@ export function StreakMonthCalendar() {
           months: "w-full",
           month: "w-full",
           month_caption: "hidden",
-          weekdays: "grid grid-cols-7 mb-2",
+          weekdays: "grid grid-cols-7 mb-3",
           weekday: "text-center text-[10px] font-medium uppercase tracking-widest text-muted-foreground",
-          week: "grid grid-cols-7 gap-1.5 mb-1.5",
+          week: "grid grid-cols-7 gap-2 mb-2",
           day: "aspect-square",
           day_button: cn(
-            "w-full h-full rounded-lg border border-border/40 bg-muted/30 text-xs font-medium",
+            "w-full h-full rounded-xl border border-border/40 bg-muted/30 text-sm font-medium",
             "hover:border-primary/40 transition-colors flex items-center justify-center"
           ),
           outside: "opacity-30",
         }}
       />
 
-      <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
         <span className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded bg-muted/40 border border-border/40" /> None</span>
         <span className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded bg-primary/30 border border-primary/40" /> Some meals</span>
         <span className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rounded bg-primary/60 border border-primary/60" /> Most meals</span>
