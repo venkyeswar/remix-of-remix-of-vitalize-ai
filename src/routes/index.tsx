@@ -73,7 +73,7 @@ function Hero() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 mesh-bg opacity-60" />
       <div className="absolute inset-0 grid-bg opacity-40" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pt-20 pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:pt-28">
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pt-12 pb-16 md:pt-20 md:pb-24 lg:pb-28 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:pt-28">
         <div>
           <div className="hero-cta inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur">
             <Sparkles className="h-3 w-3 text-primary" />
@@ -188,7 +188,7 @@ function HowItWorks() {
     return () => obs.disconnect();
   }, []);
   return (
-    <section id="how" ref={ref} className="mx-auto max-w-7xl px-6 py-28">
+    <section id="how" ref={ref} className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:py-28">
       <div className="mb-14 max-w-2xl">
         <p className="text-xs uppercase tracking-widest text-primary">How it works</p>
         <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">From confused to calibrated in two minutes.</h2>
@@ -220,7 +220,7 @@ function Features() {
     return () => obs.disconnect();
   }, []);
   return (
-    <section id="features" className="bg-card/30 py-28">
+    <section id="features" className="bg-card/30 py-16 md:py-24 lg:py-28">
       <div ref={ref} className="mx-auto max-w-7xl px-6">
         <div className="mb-14 max-w-2xl">
           <p className="text-xs uppercase tracking-widest text-primary">Features</p>
@@ -250,7 +250,7 @@ function Features() {
 function SamplePlan() {
   const plan = staticDietPlans[0];
   return (
-    <section id="sample" className="mx-auto max-w-7xl px-6 py-28">
+    <section id="sample" className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:py-28">
       <div className="mb-14 max-w-2xl">
         <p className="text-xs uppercase tracking-widest text-primary">A peek inside</p>
         <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">
@@ -293,7 +293,7 @@ function SamplePlan() {
 
 function Testimonials() {
   return (
-    <section className="bg-card/30 py-28">
+    <section className="bg-card/30 py-16 md:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-14 max-w-2xl">
           <p className="text-xs uppercase tracking-widest text-primary">From the community</p>
