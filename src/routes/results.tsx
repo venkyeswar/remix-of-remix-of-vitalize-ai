@@ -70,12 +70,11 @@ function Results() {
               </div>
             </div>
 
-            {/* Condensed Stats Bar — replaces the four confusing tiles */}
-            <div className="grid grid-cols-3 gap-8 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur md:gap-10">
-              <StatPill label="Maintenance" value={calc.tdee} unit="kcal" hint="TDEE — body burn" />
-              <Divider />
+            {/* Stats grid — full breakdown */}
+            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4">
+              <StatPill label="BMR" value={calc.bmr} unit="kcal" hint="Resting burn" />
+              <StatPill label="TDEE" value={calc.tdee} unit="kcal" hint="Maintenance" />
               <StatPill label="Daily target" value={calc.calories} unit="kcal" hint={data.goal ?? "Goal pace"} accent />
-              <Divider />
               <StatPill label="Timeline" value={calc.weeks} unit="weeks" hint={`To ${data.targetWeightKg ?? "—"} kg`} />
             </div>
           </div>
