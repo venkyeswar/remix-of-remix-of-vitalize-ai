@@ -299,11 +299,11 @@ function Testimonials() {
           <p className="text-xs uppercase tracking-widest text-primary">From the community</p>
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">People who stopped guessing.</h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2 md:grid-cols-3">
           {testimonials.map((t) => (
-            <figure key={t.name} className="lift glass rounded-3xl p-7">
+            <figure key={t.name} className="lift glass flex h-full flex-col rounded-3xl p-7">
               <blockquote className="text-base leading-relaxed">"{t.quote}"</blockquote>
-              <figcaption className="mt-6 flex items-center gap-3">
+              <figcaption className="mt-auto flex items-center gap-3 pt-6">
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/20 font-semibold text-primary">
                   {t.name.split(" ").map((p) => p[0]).join("")}
                 </span>
